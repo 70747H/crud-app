@@ -10,7 +10,7 @@ services:
     # Run a command against the development stage of the image
     command: npm run start:dev
     ports:
-      - 8000:8000
+      - 8080:8080
   
   postgres:
     image: postgres
@@ -24,4 +24,3 @@ services:
       - '5432:5432'
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-      # - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql
