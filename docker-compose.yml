@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/usr/src/app
+    env_file:
+    - .env
+    # Run a command against the development stage of the image
+    command: npm run start:dev
+    ports:
+      - 8000:8000
+  
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: crud-app
+      POSTGRES_ROOT_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      # - ./sql/database.sql:/docker-entrypoint-initdb.d/database.sql
